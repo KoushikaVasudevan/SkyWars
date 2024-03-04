@@ -65,6 +65,7 @@ public class SoundManager : MonoBehaviour
         ButtonClick,
         PlayerDeath,
         PowerupPickup,
+        EagleScreech,
         CoinPickup
     }
 }
