@@ -6,33 +6,42 @@ public class MissileSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject missile;
 
-    [SerializeField] private HelicopterController helicopterController;
+    //[SerializeField] private HelicopterController helicopterController;
+    [SerializeField] private float gooseCoolDownTime = 5f;
+    [SerializeField] private float activeGooseTime;
 
     [SerializeField] private float timeBetweenSpawns;
 
     [SerializeField] private float spawnXPos;
+    [SerializeField] private bool isGoldenGooseActive;
 
     private void Start()
     {
+        activeGooseTime = gooseCoolDownTime;
+
+        isGoldenGooseActive = false;
         StartCoroutine(SpawnMissiles(timeBetweenSpawns));
     }
 
     private void Update()
     {
+        if(isGoldenGooseActive)
+        {
+            activeGooseTime -= Time.deltaTime;
 
+            if(activeGooseTime <= 0)
+            {
+                isGoldenGooseActive = false;
+                activeGooseTime = gooseCoolDownTime;
+            }
+        }
     }
 
     private IEnumerator SpawnMissiles(float timeBetweenSpawns)
     {
-        yield return new WaitForSeconds(timeBetweenSpawns);
+        yield return new WaitForSeconds(timeBetweenSpawns); 
 
-
-        if ((helicopterController == null))
-        {
-            yield break;
-        }
-
-        else
+        if(!isGoldenGooseActive)
         {
             Vector2 spawnPosition;
 
@@ -40,11 +49,15 @@ public class MissileSpawner : MonoBehaviour
             spawnPosition.y = Random.Range(-4, 4);
 
             GameObject objectToSpawn = null;
-
-            objectToSpawn = Instantiate(missile, new Vector2(spawnPosition.x, spawnPosition.y), missile.gameObject.transform.rotation);
-
-            StartCoroutine(SpawnMissiles(timeBetweenSpawns));
+            objectToSpawn = Instantiate(missile, new Vector2(spawnPosition.x, spawnPosition.y), missile.transform.rotation);
         }
+
+        StartCoroutine(SpawnMissiles(timeBetweenSpawns));
+    }
+
+    public void ActivateGoldenGoose()
+    {
+        isGoldenGooseActive = true;
     }
 }
 

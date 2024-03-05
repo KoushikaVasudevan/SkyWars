@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SideScroll : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed;
+    [SerializeField] private float disappearingXPos;
 
     private void Start()
     {
@@ -14,10 +15,22 @@ public class SideScroll : MonoBehaviour
     private void Update()
     {
         transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
-
-        if (transform.position.x <= -10f)
+        
+        if(gameObject.tag == "flock")
         {
-            Destroy(this.gameObject);
+            if (transform.position.x >= disappearingXPos)
+            {
+                gameObject.transform.position = new Vector2(-6.7f, -1.7f);
+                gameObject.SetActive(false);
+            }
+
+        }
+        else if(gameObject.tag != "flock")
+        {
+            if (transform.position.x <= disappearingXPos)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

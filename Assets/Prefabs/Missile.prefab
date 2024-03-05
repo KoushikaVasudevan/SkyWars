@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6366578608075416366}
   - component: {fileID: 6366578608075416367}
   - component: {fileID: 6366578608075416400}
-  - component: {fileID: 6366578608075416401}
   - component: {fileID: 6366578608075416365}
   - component: {fileID: 7344834018629843479}
   m_Layer: 0
@@ -112,19 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3270862, y: 0.45020887}
   m_EdgeRadius: 0
---- !u!114 &6366578608075416401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6366578608075416402}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96dadabc3a5f3f640bc2ed6f4dd387f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missileSpeed: 4
 --- !u!50 &6366578608075416365
 Rigidbody2D:
   serializedVersion: 4
@@ -158,4 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e90686f836da14ba7402474761b4aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 6
+  disappearingXPos: -10
