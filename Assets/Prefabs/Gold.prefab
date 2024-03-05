@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4213946359726959108}
   - component: {fileID: 4213946359726959109}
   - component: {fileID: 4213946359726959110}
+  - component: {fileID: 8503888536683282944}
   m_Layer: 0
   m_Name: Gold
   m_TagString: gold
@@ -119,9 +120,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4213946359726959111}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
@@ -139,9 +140,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4213946359726959111}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 711113f27ec277845aeda8439b33f3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+--- !u!114 &8503888536683282944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213946359726959111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e90686f836da14ba7402474761b4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5

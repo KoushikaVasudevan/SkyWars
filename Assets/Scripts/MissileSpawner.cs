@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MissileSpawner : MonoBehaviour
 {
-    [SerializeField] private MissileController missileController;
+    [SerializeField] private GameObject missile;
 
     [SerializeField] private HelicopterController helicopterController;
 
@@ -41,7 +41,7 @@ public class MissileSpawner : MonoBehaviour
 
             GameObject objectToSpawn = null;
 
-            objectToSpawn = Instantiate(missileController.gameObject, new Vector2(spawnPosition.x, spawnPosition.y), missileController.gameObject.transform.rotation);
+            objectToSpawn = Instantiate(missile, new Vector2(spawnPosition.x, spawnPosition.y), missile.gameObject.transform.rotation);
 
             StartCoroutine(SpawnMissiles(timeBetweenSpawns));
         }

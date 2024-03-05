@@ -12,10 +12,9 @@ public class HelicopterController : MonoBehaviour
     [SerializeField] private Transform ShotPoint;
     [SerializeField] private float topBoundary;
 
-    //[SerializeField] private GameObject EnemyBullet;
     [SerializeField] private GameController gameController;
-    //[SerializeField] private float timeBetweenSpawns;
-
+    [SerializeField] private EagleController eagleController;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -38,41 +37,43 @@ public class HelicopterController : MonoBehaviour
             {
                 speed = helicopterSpeed;
             }
+
+            
             rb2d.velocity = transform.up * speed;
         }
-
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            Instantiate(EnemyBullet, ShotPoint.transform.position, ShotPoint.transform.rotation);
-        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "missile")
-        {
-            explosion.Play();
-            SoundManager.Instance.Play(SoundManager.Sounds.PlayerDeath);
+        Debug.Log("Helicopter collider" + collision.gameObject.tag);
 
-            gameController.HelicopterCrashed();
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "gold")
+        switch(collision.gameObject.tag)
         {
-            SoundManager.Instance.Play(SoundManager.Sounds.CoinPickup);
-            gameController.IncreaseScore(1);
+            case "missile":
+                explosion.Play();
+                SoundManager.Instance.Play(SoundManager.Sounds.PlayerDeath);
+                gameController.HelicopterCrashed();
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
+                break;
 
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.tag == "collider")
-        {
-            explosion.Play();
-            SoundManager.Instance.Play(SoundManager.Sounds.PlayerDeath);
+            case "gold":
+                SoundManager.Instance.Play(SoundManager.Sounds.CoinPickup);
+                gameController.IncreaseScore(1);
+                Destroy(collision.gameObject);
+                break;
 
-            gameController.HelicopterCrashed();
-            Destroy(gameObject);
-            //Destroy(collision.gameObject);
+            case "collider":
+                explosion.Play();
+                SoundManager.Instance.Play(SoundManager.Sounds.PlayerDeath);
+                gameController.HelicopterCrashed();
+                Destroy(gameObject);
+                break;
+
+            case "powerup":
+                Destroy(collision.gameObject);
+                eagleController.GetComponent<IPowerup>().ApplyPowerup();
+                break;
         }
     }
 }
