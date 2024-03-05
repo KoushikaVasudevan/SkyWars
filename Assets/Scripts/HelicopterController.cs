@@ -9,11 +9,9 @@ public class HelicopterController : MonoBehaviour
     private float speed;
 
     [SerializeField] private float helicopterSpeed;
-    [SerializeField] private Transform ShotPoint;
     [SerializeField] private float topBoundary;
 
     [SerializeField] private GameController gameController;
-    [SerializeField] private EagleController eagleController;
     
     // Start is called before the first frame update
     void Start()
@@ -54,7 +52,6 @@ public class HelicopterController : MonoBehaviour
                 SoundManager.Instance.Play(SoundManager.Sounds.PlayerDeath);
                 gameController.HelicopterCrashed();
                 Destroy(collision.gameObject);
-                Destroy(gameObject);
                 break;
 
             case "gold":
@@ -67,12 +64,10 @@ public class HelicopterController : MonoBehaviour
                 explosion.Play();
                 SoundManager.Instance.Play(SoundManager.Sounds.PlayerDeath);
                 gameController.HelicopterCrashed();
-                Destroy(gameObject);
                 break;
 
             case "powerup":
-                Destroy(collision.gameObject);
-                eagleController.GetComponent<IPowerup>().ApplyPowerup();
+                collision.gameObject.GetComponent<IPowerup>().ApplyPowerup();
                 break;
         }
     }

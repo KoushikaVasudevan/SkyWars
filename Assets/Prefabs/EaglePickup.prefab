@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3016059285500544569}
   - component: {fileID: 5464599918075850331}
   - component: {fileID: 5525578693623135657}
-  - component: {fileID: 6759032936889629377}
+  - component: {fileID: -2821187973489104967}
   m_Layer: 0
   m_Name: EaglePickup
   m_TagString: powerup
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6759032936889629377
+--- !u!114 &-2821187973489104967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 788391094325652120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e90686f836da14ba7402474761b4aa, type: 3}
+  m_Script: {fileID: 11500000, guid: cb4ed552fcc247048a45f5a04c84b7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 5
+  disappearingXPos: -10
+  eagleController: {fileID: 0}

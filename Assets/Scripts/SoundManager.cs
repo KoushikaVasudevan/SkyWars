@@ -66,6 +66,8 @@ public class SoundManager : MonoBehaviour
         PlayerDeath,
         PowerupPickup,
         EagleScreech,
+        DuckQuack,
+        BirdsFlap,
         CoinPickup
     }
 }

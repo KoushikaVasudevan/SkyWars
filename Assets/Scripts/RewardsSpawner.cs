@@ -5,45 +5,62 @@ using UnityEngine;
 public class RewardsSpawner : MonoBehaviour
 {
     [SerializeField] private HelicopterController helicopterController;
-    [SerializeField] private GoldController goldController;
+    [SerializeField] private GameObject gold;
     [SerializeField] private float timeBetweenSpawns;
-
+    
     [SerializeField] private float spawnXPos;
+    [SerializeField] private bool isGoldenGooseActive;
+    [SerializeField] private float gooseCoolDownTime = 5f;
+    [SerializeField] private float activeGooseTime;
 
     private void Start()
     {
+        activeGooseTime = gooseCoolDownTime;
+
+        isGoldenGooseActive = false;
         StartCoroutine(SpawnGoldCollectible(timeBetweenSpawns));
     }
 
     private void Update()
     {
+        if (isGoldenGooseActive)
+        {
+            activeGooseTime -= Time.deltaTime;
 
+            if (activeGooseTime <= 0)
+            {
+                isGoldenGooseActive = false;
+                activeGooseTime = gooseCoolDownTime;
+            }
+        }
     }
 
     private IEnumerator SpawnGoldCollectible(float timeBetweenSpawns)
     {
         yield return new WaitForSeconds(timeBetweenSpawns);
 
-
-        if ((helicopterController == null))
+        if (isGoldenGooseActive)
         {
-            yield break;
+            timeBetweenSpawns = 1;
+        }
+        else if (!isGoldenGooseActive)
+        {
+            timeBetweenSpawns = 5;
         }
 
-        else
-        {
-            Vector2 spawnPosition;
+        Vector2 spawnPosition;
 
-            spawnPosition.x = spawnXPos;
-            spawnPosition.y = Random.Range(-4, 5);
+        spawnPosition.x = spawnXPos;
+        spawnPosition.y = Random.Range(-4, 4);
 
-            //int randomNumber = Random.Range(0, 5);
+        GameObject objectToSpawn = null;
+        objectToSpawn = Instantiate(gold, new Vector2(spawnPosition.x, spawnPosition.y), gold.transform.rotation);
 
-            GameObject objectToSpawn = null;
+        StartCoroutine(SpawnGoldCollectible(timeBetweenSpawns));
+    }
 
-            objectToSpawn = Instantiate(goldController.gameObject, new Vector2(spawnPosition.x, spawnPosition.y), goldController.gameObject.transform.rotation);
-
-            StartCoroutine(SpawnGoldCollectible(timeBetweenSpawns));
-        }
+    public void ActivateGoldenGoose()
+    {
+        isGoldenGooseActive = true;
     }
 }

@@ -9,6 +9,9 @@ TagManager:
   - collider
   - eagle
   - powerup
+  - eagle-powerup
+  - goose-powerup
+  - flock
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - friends
+  - helicopter
   - 
   - 
   - 
